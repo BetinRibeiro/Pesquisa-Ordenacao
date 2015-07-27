@@ -270,11 +270,11 @@ public class jCadastroQuestao extends JFrame {
 		Opcao op4 = new Opcao();
 		Opcao op5 = new Opcao();
 
-		op1.setFacilidade(0);
-		op2.setFacilidade(0);
-		op3.setFacilidade(0);
-		op4.setFacilidade(0);
-		op5.setFacilidade(0);
+		op1.setDificuldade(1);
+		op2.setDificuldade(1);
+		op3.setDificuldade(1);
+		op4.setDificuldade(1);
+		op5.setDificuldade(1);
 
 		op1.setIdQuestao(quest.getId());
 		op2.setIdQuestao(quest.getId());

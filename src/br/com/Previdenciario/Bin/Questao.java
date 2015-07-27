@@ -19,6 +19,13 @@ public class Questao {
 	private String enunciado;
 	@Column(name = "numero_ocorrencia")
 	private Integer numeroOcorrencia;
+	private float dificuldade;
+	public float getDificuldade() {
+		return dificuldade;
+	}
+	public void setDificuldade(float dificuldade) {
+		this.dificuldade = dificuldade;
+	}
 	public Integer getId() {
 		return id;
 	}

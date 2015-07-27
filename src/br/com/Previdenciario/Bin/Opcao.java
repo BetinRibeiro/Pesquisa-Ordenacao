@@ -18,7 +18,7 @@ public class Opcao {
 	private String descricao;
 	@Column(name = "id_questao")
 	private Integer idQuestao;
-	private float facilidade;
+	private float dificuldade;
 	private Boolean verdadeira;
 	public Integer getId() {
 		return id;
@@ -38,11 +38,11 @@ public class Opcao {
 	public void setIdQuestao(Integer idQuestao) {
 		this.idQuestao = idQuestao;
 	}
-	public float getFacilidade() {
-		return facilidade;
+	public float getDificuldade() {
+		return dificuldade;
 	}
-	public void setFacilidade(float facilidade) {
-		this.facilidade = facilidade;
+	public void setDificuldade(float dificuldade) {
+		this.dificuldade = dificuldade;
 	}
 	public Boolean getVerdadeira() {
 		return verdadeira;
