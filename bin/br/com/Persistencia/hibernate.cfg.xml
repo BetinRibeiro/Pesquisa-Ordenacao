@@ -17,7 +17,7 @@
 		
 		<mapping class="br.com.Previdenciario.Bin.Questao" />
 		<mapping class="br.com.Previdenciario.Bin.Opcao" />
-		
+		<mapping class="br.com.Previdenciario.Bin.Mapeamento" />
 		<mapping class="br.com.Previdenciario.Bin.Classificacao" />
 		
 		

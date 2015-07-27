@@ -60,9 +60,9 @@ public class JTesteQuestoes extends JFrame {
 	private JLabel lblErr0;
 	private JLabel lblTotal0;
 	private JLabel lblQuest;
-	
-	private int acertos=0;
-	private int erros=0;
+
+	private int acertos = 0;
+	private int erros = 0;
 	private int idQuestao;
 
 	/**
@@ -245,8 +245,8 @@ public class JTesteQuestoes extends JFrame {
 		lblQuest = new JLabel("Quest");
 		lblQuest.setBounds(1247, 11, 70, 14);
 		contentPane.add(lblQuest);
-		
-		//System.out.println(lblAcertos.getText());
+
+		// System.out.println(lblAcertos.getText());
 
 		insereQuestao();
 	}
@@ -261,7 +261,6 @@ public class JTesteQuestoes extends JFrame {
 
 		txtEnunciado.setText(quest.getEnunciado());
 
-		
 		lblQuest.setText(String.valueOf(quest.getId()));
 
 		listaQuestaoResposta.add(quest.getId());
@@ -324,7 +323,7 @@ public class JTesteQuestoes extends JFrame {
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
 				banco.salvarOuAtualizarObjeto(q);
-				acertos = acertos+1;
+				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
 				JOptionPane.showMessageDialog(null, "Resposta Correta!!");
 			}
@@ -337,7 +336,7 @@ public class JTesteQuestoes extends JFrame {
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
 				banco.salvarOuAtualizarObjeto(q);
-				acertos = acertos+1;
+				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
 				JOptionPane.showMessageDialog(null, "Resposta Correta!!");
 			}
@@ -350,7 +349,7 @@ public class JTesteQuestoes extends JFrame {
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
 				banco.salvarOuAtualizarObjeto(q);
-				acertos = acertos+1;
+				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
 				JOptionPane.showMessageDialog(null, "Resposta Correta!!");
 			}
@@ -363,7 +362,7 @@ public class JTesteQuestoes extends JFrame {
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
 				banco.salvarOuAtualizarObjeto(q);
-				acertos = acertos+1;
+				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
 				JOptionPane.showMessageDialog(null, "Resposta Correta!!");
 			}
@@ -376,7 +375,7 @@ public class JTesteQuestoes extends JFrame {
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
 				banco.salvarOuAtualizarObjeto(q);
-				acertos = acertos+1;
+				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
 
 				JOptionPane.showMessageDialog(null, "Resposta Correta!!");
@@ -387,13 +386,18 @@ public class JTesteQuestoes extends JFrame {
 		if (listaQuestaoResposta.size() <= 2) {
 			listaQuestaoResposta.add(0);
 			JOptionPane.showMessageDialog(null, "Sua Resposta esta errada! ");
-			 erros = erros+1;
+			erros = erros + 1;
 			lblErr0.setText(String.valueOf(erros));
 			Questao q = (Questao) banco.buscarPorId(Questao.class,
 					listaQuestaoResposta.get(0));
 			q.setDificuldade((q.getDificuldade() * 2));
 			banco.salvarOuAtualizarObjeto(q);
-
+			Opcao p = (Opcao) banco.buscarPorId(Opcao.class, listaQuestaoResposta.get(1));
+			JMapeamento mp = new JMapeamento(txtEnunciado.getText() + "\n\n"
+					+ txtrA.getText() + "\n\n" + txtrB.getText() + "\n\n"
+					+ txtrC.getText() + "\n\n" + txtrD.getText() + "\n\n"
+					+ txtrE.getText()+ "\n\n A resposta correta é : " + p.getDescricao(), listaQuestaoResposta.get(0));
+			mp.setVisible(true);
 		}
 
 		Questao questao = (Questao) banco.buscarPorId(Questao.class,
@@ -409,8 +413,8 @@ public class JTesteQuestoes extends JFrame {
 		insereQuestao();
 
 		banco.salvarOuAtualizarObjeto(questao);
-		
-		lblTotal0.setText(String.valueOf(acertos+erros));
+
+		lblTotal0.setText(String.valueOf(acertos + erros));
 
 	}
 }

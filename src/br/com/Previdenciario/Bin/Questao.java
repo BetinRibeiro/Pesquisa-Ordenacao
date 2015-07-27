@@ -19,6 +19,13 @@ public class Questao {
 	private String enunciado;
 	@Column(name = "numero_ocorrencia")
 	private Integer numeroOcorrencia;
+	private String fonte;
+	public String getFonte() {
+		return fonte;
+	}
+	public void setFonte(String fonte) {
+		this.fonte = fonte;
+	}
 	private float dificuldade;
 	public float getDificuldade() {
 		return dificuldade;
