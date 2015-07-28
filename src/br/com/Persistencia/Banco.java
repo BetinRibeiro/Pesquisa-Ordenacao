@@ -147,21 +147,21 @@ public class Banco {
 		}
 	}
 	
-	public List<?> listarObjetosAscDupla(Class<?> classe, String ordanacao, String segundaOrdenacao) {
-		try {
-			sessao = HibernateUtil.getSession().openSession();
-			Criteria criteria = sessao.createCriteria(classe).addOrder(
-					Order.asc(ordanacao)).addOrder(Order.desc(segundaOrdenacao));
-
-			return criteria.list();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("erro : " + e);
-			return null;
-		} finally {
-			sessao.close();
-		}
-	}
+//	public List<?> listarObjetosAscDupla(Class<?> classe, String ordanacao, String segundaOrdenacao) {
+//		try {
+//			sessao = HibernateUtil.getSession().openSession();
+//			Criteria criteria = sessao.createCriteria(classe).addOrder(
+//					Order.asc(ordanacao)).addOrder(Order.desc(segundaOrdenacao));
+//
+//			return criteria.list();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			System.out.println("erro : " + e);
+//			return null;
+//		} finally {
+//			sessao.close();
+//		}
+//	}
 
 //	public List<?> retornaUmaQuestao() {
 //		try {

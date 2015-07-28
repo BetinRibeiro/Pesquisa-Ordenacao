@@ -1,5 +1,8 @@
 package br.com.Previdenciario.Bin;
 
+
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,36 +11,31 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "mapeamento")
-public class Mapeamento {
+@Table(name = "desempenhoPrevidenciario")
+public class DesempenhoPrevidencia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
 	private Integer id;
-	@Column(name = "texto",nullable=false, length=10000)
-	private String texto;
-	@Column(name = "observacao",nullable=false, length=10000)
-	private String observacao;
-	
-	
+	private float nivel;
+	private Date data;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getTexto() {
-		return texto;
+	public float getNiveis() {
+		return nivel;
 	}
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public void setNiveis(float nivel) {
+		this.nivel = nivel;
 	}
-	public String getObservacao() {
-		return observacao;
+	public Date getDate() {
+		return data;
 	}
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
+	public void setDate(Date data) {
+		this.data = data;
 	}
-	
 
 }

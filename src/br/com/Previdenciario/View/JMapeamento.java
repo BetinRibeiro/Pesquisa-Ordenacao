@@ -27,13 +27,14 @@ import java.awt.event.ActionEvent;
 public class JMapeamento extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtfonte;
-	private JTextField txtlocal;
 	private JTextArea txtObservacao;
 	private JTextArea txtTextoLei;
 	private JTextArea txtrQuest;
 	
 	private Integer iD;
+	
+	private Banco banco = new Banco();
+	private Integer idMap;
 
 	
 	public JMapeamento(String questao, Integer id) {
@@ -75,24 +76,6 @@ public class JMapeamento extends JFrame {
 		 txtTextoLei.setEnabled(false);
 		scrollPane_1.setViewportView(txtTextoLei);
 		
-		JLabel lblFonte = new JLabel("Fonte");
-		lblFonte.setBounds(10, 20, 86, 20);
-		panel_1.add(lblFonte);
-		
-		JLabel lblLocal = new JLabel("Local");
-		lblLocal.setBounds(439, 20, 86, 20);
-		panel_1.add(lblLocal);
-		
-		txtfonte = new JTextField();
-		txtfonte.setBounds(85, 20, 326, 20);
-		panel_1.add(txtfonte);
-		txtfonte.setColumns(10);
-		
-		txtlocal = new JTextField();
-		txtlocal.setColumns(10);
-		txtlocal.setBounds(514, 20, 379, 20);
-		panel_1.add(txtlocal);
-		
 		JScrollPane scrollPane_2 = new JScrollPane();
 		scrollPane_2.setBounds(10, 400, 883, 240);
 		panel_1.add(scrollPane_2);
@@ -106,19 +89,22 @@ public class JMapeamento extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Mapeamento mp = new Mapeamento();
 				
-				mp.setFonte(txtfonte.getText());
-				mp.setLocal(txtlocal.getText());
 				mp.setObservacao(txtObservacao.getText());
 				mp.setTexto(txtTextoLei.getText());
 				
 				Banco banco = new Banco();
 				Questao ques = (Questao) banco.buscarPorId(Questao.class, iD);
 				
-				ques.setFonte(txtfonte.getText()+" - "+txtlocal.getText());
+				ques.setFonte(ques.getId());
 				
 				banco.salvarOuAtualizarObjeto(ques);
 				
-				banco.salvarObjeto(mp);
+				if (idMap<=-1) {
+					banco.salvarObjeto(mp);
+				}
+				if (idMap >-1) {
+					banco.salvarOuAtualizarObjeto(mp);
+				}
 				dispose();
 			}
 		});
@@ -130,8 +116,6 @@ public class JMapeamento extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				txtTextoLei.setEnabled(true);
 				txtObservacao.setEnabled(true);
-				txtfonte.setEnabled(true);
-				txtlocal.setEnabled(true);
 			}
 		});
 		btnLiberar.setBounds(606, 666, 89, 23);
@@ -157,5 +141,26 @@ public class JMapeamento extends JFrame {
 		txtObservacao.setLineWrap(true);
 		txtrQuest.setLineWrap(true);
 		txtTextoLei.setLineWrap(true);
+		
+		verificaExistencia();
+		
+		
+	}
+
+
+	private void verificaExistencia() {
+		Questao quest = (Questao) banco.buscarPorId(Questao.class, iD);
+		
+		System.out.println(quest.getFonte());
+		
+		
+		
+		if (quest.getFonte()>-1) {
+			Mapeamento mp = (Mapeamento) banco.buscarPorId(Mapeamento.class, quest.getFonte());
+			txtTextoLei.setText(mp.getTexto());
+			txtObservacao.setText(mp.getObservacao());
+			idMap= mp.getId();
+		}
+		idMap= -1;
 	}
 }

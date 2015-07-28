@@ -262,6 +262,7 @@ public class jCadastroQuestao extends JFrame {
 		quest.setNumeroOcorrencia(0);
 		quest.setTitulo((String) boxTipo.getSelectedItem());
 		quest.setEnunciado(txtEnunciado.getText().replaceAll(breakLine, ""));
+		quest.setFonte(-1);
 		banco.salvarObjeto(quest);
 
 		Opcao op1 = new Opcao();
@@ -282,6 +283,12 @@ public class jCadastroQuestao extends JFrame {
 		op4.setIdQuestao(quest.getId());
 		op5.setIdQuestao(quest.getId());
 
+		op1.setVerdadeira(true);
+		op2.setVerdadeira(false);
+		op3.setVerdadeira(false);
+		op4.setVerdadeira(false);
+		op5.setVerdadeira(false);
+		
 		op1.setVerdadeira(true);
 		op2.setVerdadeira(false);
 		op3.setVerdadeira(false);

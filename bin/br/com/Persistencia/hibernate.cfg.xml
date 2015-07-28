@@ -19,7 +19,7 @@
 		<mapping class="br.com.Previdenciario.Bin.Opcao" />
 		<mapping class="br.com.Previdenciario.Bin.Mapeamento" />
 		<mapping class="br.com.Previdenciario.Bin.Classificacao" />
-		
+		<mapping class="br.com.Previdenciario.Bin.DesempenhoPrevidencia" />
 		
 
 	</session-factory>

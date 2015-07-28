@@ -25,11 +25,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
 import br.com.Persistencia.Banco;
+import br.com.Previdenciario.Bin.DesempenhoPrevidencia;
 import br.com.Previdenciario.Bin.Opcao;
 import br.com.Previdenciario.Bin.Questao;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
 
 public class JTesteQuestoes extends JFrame {
@@ -61,9 +63,9 @@ public class JTesteQuestoes extends JFrame {
 	private JLabel lblTotal0;
 	private JLabel lblQuest;
 
-	private int acertos = 0;
-	private int erros = 0;
-	private int idQuestao;
+	private float acertos = 0;
+	private float erros = 0;
+	private float idQuestao;
 
 	/**
 	 * Launch the application.
@@ -213,6 +215,25 @@ public class JTesteQuestoes extends JFrame {
 		grupoBotoes.add(ltC);
 		grupoBotoes.add(ltD);
 		grupoBotoes.add(ltE);
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				DesempenhoPrevidencia des = new DesempenhoPrevidencia();
+				
+				System.out.println(acertos+erros);
+				des.setNiveis((acertos/(acertos+erros))*((acertos+erros)/10));
+				des.setDate(new java.sql.Date(new java.util.Date().getTime()));
+				
+				
+				
+				JOptionPane.showMessageDialog(null, "Seu desemprenho doi de "+des.getNiveis()+" \n veja todos os resultados para verificar o grafico de desempenho");
+				banco.salvarObjeto(des);
+			}
+		});
+		btnSalvar.setBounds(620, 664, 100, 25);
+		panel.add(btnSalvar);
 
 		JLabel lblAcertos = new JLabel("Acertos");
 		lblAcertos.setBounds(10, 35, 70, 14);
@@ -246,6 +267,23 @@ public class JTesteQuestoes extends JFrame {
 		lblQuest.setBounds(1247, 11, 70, 14);
 		contentPane.add(lblQuest);
 
+		List<?> li = banco.listarObjetosAsc(Questao.class,
+				"numeroOcorrencia");
+		
+		for (int i = 0; i < li.size(); i++) {
+			Questao q = (Questao) li.get(i);
+			
+			if (q.getTitulo().equalsIgnoreCase("CAGÃO")) {
+				q.setEnunciado("FCC - 2015 - TCE-CE - Técnico de Controle Externo \n\n"+q.getEnunciado());
+				System.out.println("__________________________________________________________________________");
+				System.out.println(q.getEnunciado());
+				System.out.println("__________________________________________________________________________");
+				
+				//banco.salvarOuAtualizarObjeto(q);
+			}
+		}
+
+		
 		// System.out.println(lblAcertos.getText());
 
 		insereQuestao();
@@ -254,8 +292,8 @@ public class JTesteQuestoes extends JFrame {
 	private void insereQuestao() {
 		// TODO Auto-generated method stub
 
-		List<?> li = banco.listarObjetosAscDupla(Questao.class,
-				"numeroOcorrencia", "dificuldade");
+		List<?> li = banco.listarObjetosAsc(Questao.class,
+				"numeroOcorrencia");
 
 		Questao quest = (Questao) li.get(0);
 
@@ -322,6 +360,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
+				q.setAcertos(q.getAcertos()+1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -335,6 +374,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
+				q.setAcertos(q.getAcertos()+1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -348,6 +388,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
+				q.setAcertos(q.getAcertos()+1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -361,6 +402,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
+				q.setAcertos(q.getAcertos()+1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -374,6 +416,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
+				q.setAcertos(q.getAcertos()+1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -391,6 +434,7 @@ public class JTesteQuestoes extends JFrame {
 			Questao q = (Questao) banco.buscarPorId(Questao.class,
 					listaQuestaoResposta.get(0));
 			q.setDificuldade((q.getDificuldade() * 2));
+			q.setAcertos(q.getAcertos()-1);
 			banco.salvarOuAtualizarObjeto(q);
 			Opcao p = (Opcao) banco.buscarPorId(Opcao.class, listaQuestaoResposta.get(1));
 			JMapeamento mp = new JMapeamento(txtEnunciado.getText() + "\n\n"
@@ -410,11 +454,12 @@ public class JTesteQuestoes extends JFrame {
 		listaQuestaoResposta.clear();
 		listaOpcoesApresentadas.clear();
 
-		insereQuestao();
+		
 
 		banco.salvarOuAtualizarObjeto(questao);
 
 		lblTotal0.setText(String.valueOf(acertos + erros));
+		insereQuestao();
 
 	}
 }

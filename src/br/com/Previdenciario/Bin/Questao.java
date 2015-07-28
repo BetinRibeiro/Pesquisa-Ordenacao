@@ -19,11 +19,19 @@ public class Questao {
 	private String enunciado;
 	@Column(name = "numero_ocorrencia")
 	private Integer numeroOcorrencia;
-	private String fonte;
-	public String getFonte() {
+	private Integer fonte;
+	@Column(name = "acertos")
+	private float acertos;
+	
+	
+	
+	
+	
+	
+	public Integer getFonte() {
 		return fonte;
 	}
-	public void setFonte(String fonte) {
+	public void setFonte(Integer fonte) {
 		this.fonte = fonte;
 	}
 	private float dificuldade;
@@ -56,6 +64,12 @@ public class Questao {
 	}
 	public void setNumeroOcorrencia(Integer numeroOcorrencia) {
 		this.numeroOcorrencia = numeroOcorrencia;
+	}
+	public float getAcertos() {
+		return acertos;
+	}
+	public void setAcertos(float acertos) {
+		this.acertos = acertos;
 	}
 	
 	
