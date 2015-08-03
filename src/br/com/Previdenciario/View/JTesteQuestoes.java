@@ -273,8 +273,8 @@ public class JTesteQuestoes extends JFrame {
 		for (int i = 0; i < li.size(); i++) {
 			Questao q = (Questao) li.get(i);
 			
-			if (q.getTitulo().equalsIgnoreCase("CAGÃO")) {
-				q.setEnunciado("FCC - 2015 - TCE-CE - Técnico de Controle Externo \n\n"+q.getEnunciado());
+			if (q.getTitulo().equalsIgnoreCase("Prova do INSS 2012 - Tecnico Previdenciario")) {
+				q.setTitulo("DIREITO PREVIDENCIARIO");
 				System.out.println("__________________________________________________________________________");
 				System.out.println(q.getEnunciado());
 				System.out.println("__________________________________________________________________________");
@@ -436,12 +436,12 @@ public class JTesteQuestoes extends JFrame {
 			q.setDificuldade((q.getDificuldade() * 2));
 			q.setAcertos(q.getAcertos()-1);
 			banco.salvarOuAtualizarObjeto(q);
-			Opcao p = (Opcao) banco.buscarPorId(Opcao.class, listaQuestaoResposta.get(1));
-			JMapeamento mp = new JMapeamento(txtEnunciado.getText() + "\n\n"
-					+ txtrA.getText() + "\n\n" + txtrB.getText() + "\n\n"
-					+ txtrC.getText() + "\n\n" + txtrD.getText() + "\n\n"
-					+ txtrE.getText()+ "\n\n A resposta correta é : " + p.getDescricao(), listaQuestaoResposta.get(0));
-			mp.setVisible(true);
+//			Opcao p = (Opcao) banco.buscarPorId(Opcao.class, listaQuestaoResposta.get(1));
+//			JMapeamento mp = new JMapeamento(txtEnunciado.getText() + "\n\n"
+//					+ txtrA.getText() + "\n\n" + txtrB.getText() + "\n\n"
+//					+ txtrC.getText() + "\n\n" + txtrD.getText() + "\n\n"
+//					+ txtrE.getText()+ "\n\n A resposta correta é : " + p.getDescricao(), listaQuestaoResposta.get(0));
+//			mp.setVisible(true);
 		}
 
 		Questao questao = (Questao) banco.buscarPorId(Questao.class,

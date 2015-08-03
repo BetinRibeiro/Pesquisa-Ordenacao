@@ -107,7 +107,7 @@ public class jCadastroQuestao extends JFrame {
 		panelPrincipal.add(lblEnunciado);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 80, 547, 102);
+		scrollPane.setBounds(10, 80, 550, 160);
 		panelPrincipal.add(scrollPane);
 
 		txtEnunciado = new JTextArea();
@@ -115,11 +115,11 @@ public class jCadastroQuestao extends JFrame {
 		scrollPane.setViewportView(txtEnunciado);
 
 		JLabel lblCorreta = new JLabel("CORRETA");
-		lblCorreta.setBounds(10, 190, 95, 14);
+		lblCorreta.setBounds(10, 250, 95, 14);
 		panelPrincipal.add(lblCorreta);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 220, 547, 102);
+		scrollPane_1.setBounds(10, 275, 550, 160);
 		panelPrincipal.add(scrollPane_1);
 
 		JButton btnSalvar = new JButton("Salvar");
@@ -133,15 +133,15 @@ public class jCadastroQuestao extends JFrame {
 		txtCorreta.setBackground(new Color(224, 255, 255));
 		scrollPane_1.setViewportView(txtCorreta);
 
-		btnSalvar.setBounds(10, 623, 89, 23);
+		btnSalvar.setBounds(10, 646, 89, 23);
 		panelPrincipal.add(btnSalvar);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(122, 623, 89, 23);
+		btnCancelar.setBounds(122, 646, 89, 23);
 		panelPrincipal.add(btnCancelar);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(236, 623, 89, 23);
+		btnVoltar.setBounds(236, 646, 89, 23);
 		panelPrincipal.add(btnVoltar);
 
 		JLabel lblIncorreta_5 = new JLabel("INCORRETA");
@@ -149,7 +149,7 @@ public class jCadastroQuestao extends JFrame {
 		panelPrincipal.add(lblIncorreta_5);
 
 		JScrollPane scrollPane_4 = new JScrollPane();
-		scrollPane_4.setBounds(580, 80, 547, 102);
+		scrollPane_4.setBounds(580, 80, 550, 160);
 		panelPrincipal.add(scrollPane_4);
 
 		txtIncorreta01 = new JTextArea();
@@ -157,11 +157,11 @@ public class jCadastroQuestao extends JFrame {
 		scrollPane_4.setViewportView(txtIncorreta01);
 
 		JLabel lblIncorreta_2 = new JLabel("INCORRETA");
-		lblIncorreta_2.setBounds(580, 190, 95, 14);
+		lblIncorreta_2.setBounds(580, 250, 95, 14);
 		panelPrincipal.add(lblIncorreta_2);
 
 		JScrollPane scrollPane_5 = new JScrollPane();
-		scrollPane_5.setBounds(580, 220, 547, 102);
+		scrollPane_5.setBounds(580, 275,550, 160);
 		panelPrincipal.add(scrollPane_5);
 
 		txtIncorreta02 = new JTextArea();
@@ -169,11 +169,11 @@ public class jCadastroQuestao extends JFrame {
 		scrollPane_5.setViewportView(txtIncorreta02);
 
 		JLabel lblIncorreta_3 = new JLabel("INCORRETA");
-		lblIncorreta_3.setBounds(580, 333, 95, 14);
+		lblIncorreta_3.setBounds(580, 450, 95, 14);
 		panelPrincipal.add(lblIncorreta_3);
 
 		JScrollPane scrollPane_6 = new JScrollPane();
-		scrollPane_6.setBounds(580, 363, 547, 102);
+		scrollPane_6.setBounds(580, 475, 550, 160);
 		panelPrincipal.add(scrollPane_6);
 
 		txtIncorreta03 = new JTextArea();
@@ -181,11 +181,11 @@ public class jCadastroQuestao extends JFrame {
 		scrollPane_6.setViewportView(txtIncorreta03);
 
 		JLabel lblIncorreta_4 = new JLabel("INCORRETA");
-		lblIncorreta_4.setBounds(580, 480, 95, 14);
+		lblIncorreta_4.setBounds(10, 450, 95, 14);
 		panelPrincipal.add(lblIncorreta_4);
 
 		JScrollPane scrollPane_7 = new JScrollPane();
-		scrollPane_7.setBounds(580, 510, 547, 102);
+		scrollPane_7.setBounds(10, 475, 550, 160);
 		panelPrincipal.add(scrollPane_7);
 
 		txtIncorreta04 = new JTextArea();
@@ -263,6 +263,7 @@ public class jCadastroQuestao extends JFrame {
 		quest.setTitulo((String) boxTipo.getSelectedItem());
 		quest.setEnunciado(txtEnunciado.getText().replaceAll(breakLine, ""));
 		quest.setFonte(-1);
+		quest.setDificuldade(1);
 		banco.salvarObjeto(quest);
 
 		Opcao op1 = new Opcao();

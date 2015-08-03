@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.stream.Collectors;
 
 public class MetodosOrdenacaoSofisticados {
 	// O merge sort, ou ordenação por mistura, é um exemplo de algoritmo de
@@ -366,20 +365,20 @@ public class MetodosOrdenacaoSofisticados {
 	// essa implementação é feita em java 8, temos na internete outros
 	// algoritmos em java com versões anteriores
 
-	public static class QuickSort {
-
-		public static List<Integer> ordenar(List<Integer> vetor) {
-			if (vetor.size() <= 1)
-				return vetor;
-			else {
-				int pivo = vetor.get(vetor.size() / 2);
-				List<Integer> concatenado = new ArrayList<>();
-				concatenado.addAll(ordenar(vetor.stream().filter(i -> i > pivo).collect(Collectors.toList())));
-				concatenado.addAll(vetor.stream().filter(i -> i == pivo).collect(Collectors.toList()));
-				concatenado.addAll(ordenar(vetor.stream().filter(i -> i < pivo).collect(Collectors.toList())));
-				return concatenado;
-			}
-		}
-
-	}
+//	public static class QuickSort {
+//
+//		public static List<Integer> ordenar(List<Integer> vetor) {
+//			if (vetor.size() <= 1)
+//				return vetor;
+//			else {
+//				int pivo = vetor.get(vetor.size() / 2);
+//				List<Integer> concatenado = new ArrayList<>();
+//				concatenado.addAll(ordenar(vetor.stream().filter(i -> i > pivo).collect(Collectors.toList())));
+//				concatenado.addAll(vetor.stream().filter(i -> i == pivo).collect(Collectors.toList()));
+//				concatenado.addAll(ordenar(vetor.stream().filter(i -> i < pivo).collect(Collectors.toList())));
+//				return concatenado;
+//			}
+//		}
+//
+//	}
 }
