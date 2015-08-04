@@ -31,6 +31,7 @@ import javax.swing.JTable;
 import org.postgresql.jdbc2.EscapedFunctions;
 
 import java.awt.Color;
+import java.awt.Font;
 
 public class JVisualizaQuestao extends JFrame {
 
@@ -81,6 +82,7 @@ public class JVisualizaQuestao extends JFrame {
 		contentPane.add(scrollPane);
 		
 		txtConteudo = new JTextArea();
+		txtConteudo.setFont(new Font("Monospaced", Font.PLAIN, 30));
 		txtConteudo.setDisabledTextColor(new Color(0, 128, 128));
 		txtConteudo.setEnabled(false);
 		scrollPane.setViewportView(txtConteudo);
