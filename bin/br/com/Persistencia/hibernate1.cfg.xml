@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="">
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.password">00974403377</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/portugues</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+		<mapping class="br.com.Portugues.Bin.Adverbio" />
+		<mapping class="br.com.Portugues.Bin.Conjuncao" />
+		<mapping class="br.com.Portugues.Bin.Desempenho" />
+		<mapping class="br.com.Portugues.Bin.Palavra" />
+		
+		<mapping class="br.com.Previdenciario.Bin.Questao" />
+		<mapping class="br.com.Previdenciario.Bin.Opcao" />
+		<mapping class="br.com.Previdenciario.Bin.Mapeamento" />
+		<mapping class="br.com.Previdenciario.Bin.Classificacao" />
+		<mapping class="br.com.Previdenciario.Bin.DesempenhoPrevidencia" />
+		<mapping class="br.com.Previdenciario.Bin.Estudo" />
+		<mapping class="br.com.Previdenciario.Bin.Art" />
+		
+		
+		
+
+	</session-factory>
+</hibernate-configuration>

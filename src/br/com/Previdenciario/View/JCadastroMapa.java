@@ -210,6 +210,7 @@ public class JCadastroMapa extends JFrame implements ActionListener {
 
 		for (int i = 0; i < lista.size(); i++) {
 			Estudo palavra = (Estudo) lista.get(i);
+			
 			model.addRow(palavra);
 
 		}

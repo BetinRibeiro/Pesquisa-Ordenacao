@@ -215,23 +215,8 @@ public class JTesteQuestoes extends JFrame {
 		grupoBotoes.add(ltC);
 		grupoBotoes.add(ltD);
 		grupoBotoes.add(ltE);
-		
+
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				DesempenhoPrevidencia des = new DesempenhoPrevidencia();
-				
-				System.out.println(acertos+erros);
-				des.setNiveis((acertos/(acertos+erros))*((acertos+erros)/10));
-				des.setDate(new java.sql.Date(new java.util.Date().getTime()));
-				
-				
-				
-				JOptionPane.showMessageDialog(null, "Seu desemprenho doi de "+des.getNiveis()+" \n veja todos os resultados para verificar o grafico de desempenho");
-				banco.salvarObjeto(des);
-			}
-		});
 		btnSalvar.setBounds(620, 664, 100, 25);
 		panel.add(btnSalvar);
 
@@ -267,23 +252,24 @@ public class JTesteQuestoes extends JFrame {
 		lblQuest.setBounds(1247, 11, 70, 14);
 		contentPane.add(lblQuest);
 
-		List<?> li = banco.listarObjetosAsc(Questao.class,
-				"numeroOcorrencia");
-		
+		List<?> li = banco.listarObjetosAsc(Questao.class, "numeroOcorrencia");
+
 		for (int i = 0; i < li.size(); i++) {
 			Questao q = (Questao) li.get(i);
-			
-			if (q.getTitulo().equalsIgnoreCase("Prova do INSS 2012 - Tecnico Previdenciario")) {
+
+			if (q.getTitulo().equalsIgnoreCase(
+					"Prova do INSS 2012 - Tecnico Previdenciario")) {
 				q.setTitulo("DIREITO PREVIDENCIARIO");
-				System.out.println("__________________________________________________________________________");
+				System.out
+						.println("__________________________________________________________________________");
 				System.out.println(q.getEnunciado());
-				System.out.println("__________________________________________________________________________");
-				
-				//banco.salvarOuAtualizarObjeto(q);
+				System.out
+						.println("__________________________________________________________________________");
+
+				// banco.salvarOuAtualizarObjeto(q);
 			}
 		}
 
-		
 		// System.out.println(lblAcertos.getText());
 
 		insereQuestao();
@@ -292,8 +278,7 @@ public class JTesteQuestoes extends JFrame {
 	private void insereQuestao() {
 		// TODO Auto-generated method stub
 
-		List<?> li = banco.listarObjetosAsc(Questao.class,
-				"numeroOcorrencia");
+		List<?> li = banco.listarObjetosAsc(Questao.class, "numeroOcorrencia");
 
 		Questao quest = (Questao) li.get(0);
 
@@ -360,7 +345,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
-				q.setAcertos(q.getAcertos()+1);
+				q.setAcertos(q.getAcertos() + 1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -374,7 +359,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
-				q.setAcertos(q.getAcertos()+1);
+				q.setAcertos(q.getAcertos() + 1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -388,7 +373,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
-				q.setAcertos(q.getAcertos()+1);
+				q.setAcertos(q.getAcertos() + 1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -402,7 +387,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
-				q.setAcertos(q.getAcertos()+1);
+				q.setAcertos(q.getAcertos() + 1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -416,7 +401,7 @@ public class JTesteQuestoes extends JFrame {
 				Questao q = (Questao) banco.buscarPorId(Questao.class,
 						listaQuestaoResposta.get(0));
 				q.setDificuldade((q.getDificuldade() * (float) 0.75));
-				q.setAcertos(q.getAcertos()+1);
+				q.setAcertos(q.getAcertos() + 1);
 				banco.salvarOuAtualizarObjeto(q);
 				acertos = acertos + 1;
 				lblAcert0.setText(String.valueOf(acertos));
@@ -434,14 +419,16 @@ public class JTesteQuestoes extends JFrame {
 			Questao q = (Questao) banco.buscarPorId(Questao.class,
 					listaQuestaoResposta.get(0));
 			q.setDificuldade((q.getDificuldade() * 2));
-			q.setAcertos(q.getAcertos()-1);
+			q.setAcertos(q.getAcertos() - 1);
 			banco.salvarOuAtualizarObjeto(q);
-//			Opcao p = (Opcao) banco.buscarPorId(Opcao.class, listaQuestaoResposta.get(1));
-//			JMapeamento mp = new JMapeamento(txtEnunciado.getText() + "\n\n"
-//					+ txtrA.getText() + "\n\n" + txtrB.getText() + "\n\n"
-//					+ txtrC.getText() + "\n\n" + txtrD.getText() + "\n\n"
-//					+ txtrE.getText()+ "\n\n A resposta correta é : " + p.getDescricao(), listaQuestaoResposta.get(0));
-//			mp.setVisible(true);
+			// Opcao p = (Opcao) banco.buscarPorId(Opcao.class,
+			// listaQuestaoResposta.get(1));
+			// JMapeamento mp = new JMapeamento(txtEnunciado.getText() + "\n\n"
+			// + txtrA.getText() + "\n\n" + txtrB.getText() + "\n\n"
+			// + txtrC.getText() + "\n\n" + txtrD.getText() + "\n\n"
+			// + txtrE.getText()+ "\n\n A resposta correta é : " +
+			// p.getDescricao(), listaQuestaoResposta.get(0));
+			// mp.setVisible(true);
 		}
 
 		Questao questao = (Questao) banco.buscarPorId(Questao.class,
@@ -454,12 +441,31 @@ public class JTesteQuestoes extends JFrame {
 		listaQuestaoResposta.clear();
 		listaOpcoesApresentadas.clear();
 
-		
-
 		banco.salvarOuAtualizarObjeto(questao);
 
 		lblTotal0.setText(String.valueOf(acertos + erros));
 		insereQuestao();
+		if ((acertos + erros) >= 20) {
+			salvar();
+			dispose();
+		}
 
+	}
+
+	private void salvar() {
+
+		DesempenhoPrevidencia des = new DesempenhoPrevidencia();
+
+		System.out.println(acertos + erros);
+		des.setNiveis(acertos / (acertos + erros));
+		des.setDate(new java.sql.Date(new java.util.Date().getTime()));
+
+		JOptionPane
+				.showMessageDialog(
+						null,
+						"Seu desemprenho doi de "
+								+ des.getNiveis()
+								+ " \n veja todos os resultados para verificar o grafico de desempenho");
+		banco.salvarObjeto(des);
 	}
 }

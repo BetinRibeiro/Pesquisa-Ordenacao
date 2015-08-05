@@ -17,6 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 import br.com.Persistencia.Banco;
+import br.com.Persistencia.Banco2;
 import br.com.Previdenciario.Bin.Estudo;
 import br.com.Previdenciario.Bin.Questao;
 import br.com.Previdenciario.Model.ModelEstudo;
@@ -229,7 +230,6 @@ public class JVisualizaQuestao extends JFrame {
 
 		for (int i = 0; i < li.size(); i++) {
 			Questao quest = (Questao) li.get(i);
-			
 			listaQuest.add(quest);
 //			quest.setFonte(-1);
 //			banco.salvarOuAtualizarObjeto(quest);
