@@ -49,6 +49,7 @@ public class JVisualizaQuestao extends JFrame {
 	private JButton btnSalvar;
 	private JButton btnAnterior;
 	private JButton btnPosterior;
+	private JLabel lblDificuldade;
 
 	/**
 	 * Launch the application.
@@ -91,7 +92,7 @@ public class JVisualizaQuestao extends JFrame {
 		txtFonte = new JTextField();
 		txtFonte.setDisabledTextColor(new Color(0, 0, 0));
 		txtFonte.setEnabled(false);
-		txtFonte.setBounds(81, 36, 209, 20);
+		txtFonte.setBounds(81, 36, 506, 20);
 		contentPane.add(txtFonte);
 		txtFonte.setColumns(10);
 		
@@ -114,6 +115,7 @@ public class JVisualizaQuestao extends JFrame {
 					txtConteudo.setEnabled(false);
 					btnAnterior.setEnabled(true);
 					btnPosterior.setEnabled(true);
+					txtFonte.setText(String.valueOf(table.getValueAt(table.getSelectedRow(), 1)));
 					
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, "Selecione um item para mapeamento");
@@ -123,7 +125,7 @@ public class JVisualizaQuestao extends JFrame {
 				
 			}
 		});
-		btnSalvar.setBounds(598, 35, 89, 23);
+		btnSalvar.setBounds(892, 33, 89, 23);
 		contentPane.add(btnSalvar);
 		
 		JButton btnSair = new JButton("Sair");
@@ -132,7 +134,7 @@ public class JVisualizaQuestao extends JFrame {
 				dispose();
 			}
 		});
-		btnSair.setBounds(795, 35, 89, 23);
+		btnSair.setBounds(1265, 35, 89, 23);
 		contentPane.add(btnSair);
 		txtConteudo.setLineWrap(true);
 		txtConteudo.setWrapStyleWord(true);
@@ -143,10 +145,11 @@ public class JVisualizaQuestao extends JFrame {
 				if (posicao>0) {
 					posicao=posicao-1;
 					insereQuestao();
+					lblDificuldade.setText(String.valueOf(listaQuest.get(posicao).getDificuldade()));
 				}
 			}
 		});
-		btnAnterior.setBounds(300, 35, 89, 23);
+		btnAnterior.setBounds(597, 33, 89, 23);
 		contentPane.add(btnAnterior);
 		
 		 btnPosterior = new JButton("Posterior");
@@ -157,20 +160,21 @@ public class JVisualizaQuestao extends JFrame {
 					System.out.println("Entrou posterior");
 					posicao=posicao+1;
 					insereQuestao();
+					lblDificuldade.setText(String.valueOf(listaQuest.get(posicao).getDificuldade()));
 				}
 				
 			}
 			
 		});
-		btnPosterior.setBounds(498, 35, 89, 23);
+		btnPosterior.setBounds(795, 33, 89, 23);
 		contentPane.add(btnPosterior);
 		
 		lblIndicando = new JLabel("indicando");
-		lblIndicando.setBounds(739, 39, 123, 14);
+		lblIndicando.setBounds(1195, 39, 59, 14);
 		contentPane.add(lblIndicando);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(991, 72, 363, 577);
+		scrollPane_1.setBounds(991, 67, 363, 582);
 		contentPane.add(scrollPane_1);
 		
 		table = new JTable(model);
@@ -186,8 +190,12 @@ public class JVisualizaQuestao extends JFrame {
 				btnPosterior.setEnabled(false);
 			}
 		});
-		btnAlterar.setBounds(399, 35, 89, 23);
+		btnAlterar.setBounds(696, 33, 89, 23);
 		contentPane.add(btnAlterar);
+		
+		lblDificuldade = new JLabel("1");
+		lblDificuldade.setBounds(991, 39, 46, 14);
+		contentPane.add(lblDificuldade);
 		
 		retornaListaQuetoes();
 		
@@ -217,6 +225,7 @@ public class JVisualizaQuestao extends JFrame {
 		if ( listaQuest.get(posicao).getFonte()>0) {
 			Estudo e = (Estudo) banco.buscarPorId(Estudo.class, listaQuest.get(posicao).getFonte());
 			txtFonte.setText(String.valueOf(e.getTitulo()));
+			lblDificuldade.setText(String.valueOf(listaQuest.get(posicao).getDificuldade()));
 		}else {
 			txtFonte.setText("NADA");
 		}
@@ -225,8 +234,8 @@ public class JVisualizaQuestao extends JFrame {
 	}
 
 	private void retornaListaQuetoes() {
-		List<?> li = banco.listarObjetosAsc(Questao.class,
-				"numeroOcorrencia");
+		List<?> li = banco.listarObjetosDesc(Questao.class,
+				"dificuldade");
 
 		for (int i = 0; i < li.size(); i++) {
 			Questao quest = (Questao) li.get(i);

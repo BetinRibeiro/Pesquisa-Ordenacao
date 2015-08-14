@@ -209,9 +209,9 @@ public class JCadastroMapa extends JFrame implements ActionListener {
 		List<?> lista = banco.listarObjetosAsc(Estudo.class, "titulo");
 
 		for (int i = 0; i < lista.size(); i++) {
-			Estudo palavra = (Estudo) lista.get(i);
+			Estudo es = (Estudo) lista.get(i);
 			
-			model.addRow(palavra);
+			model.addRow(es);
 
 		}
 

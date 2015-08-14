@@ -66,6 +66,9 @@ public class JTesteQuestoes extends JFrame {
 	private float acertos = 0;
 	private float erros = 0;
 	private float idQuestao;
+	private JButton btnSalvar;
+	private JButton btnCancelar;
+	private JButton btnLiberar;
 
 	/**
 	 * Launch the application.
@@ -216,9 +219,95 @@ public class JTesteQuestoes extends JFrame {
 		grupoBotoes.add(ltD);
 		grupoBotoes.add(ltE);
 
-		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(620, 664, 100, 25);
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.setEnabled(false);
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				btnResponder.setEnabled(true);
+				btnSalvar.setEnabled(false);
+				btnCancelar.setEnabled(false);
+				btnLiberar.setEnabled(true);
+
+				Opcao op = (Opcao) banco.buscarPorId(Opcao.class,
+						listaOpcoesApresentadas.get(0));
+				op.setDescricao(txtrA.getText());
+				System.out.println(op.getDescricao());
+
+				Opcao op1 = (Opcao) banco.buscarPorId(Opcao.class,
+						listaOpcoesApresentadas.get(1));
+				op1.setDescricao(txtrB.getText());
+				System.out.println(op1.getDescricao());
+
+				Opcao op2 = (Opcao) banco.buscarPorId(Opcao.class,
+						listaOpcoesApresentadas.get(2));
+				op2.setDescricao(txtrC.getText());
+				System.out.println(op2.getDescricao());
+
+				Opcao op3 = (Opcao) banco.buscarPorId(Opcao.class,
+						listaOpcoesApresentadas.get(3));
+				op3.setDescricao(txtrD.getText());
+				System.out.println(op3.getDescricao());
+
+				Opcao op4 = (Opcao) banco.buscarPorId(Opcao.class,
+						listaOpcoesApresentadas.get(4));
+				op4.setDescricao(txtrE.getText());
+				System.out.println(txtrE.getText());
+				System.out.println(op4.getDescricao());
+
+				Questao q = (Questao) banco.buscarPorId(Questao.class,
+						op4.getIdQuestao());
+				System.out.println(q.getEnunciado());
+
+				q.setEnunciado(txtEnunciado.getText());
+				banco.salvarOuAtualizarObjeto(op);
+				banco.salvarOuAtualizarObjeto(op1);
+				banco.salvarOuAtualizarObjeto(op2);
+				banco.salvarOuAtualizarObjeto(op3);
+				banco.salvarOuAtualizarObjeto(op4);
+				banco.salvarOuAtualizarObjeto(q);
+
+				listaOpcoesApresentadas.clear();
+				insereQuestao();
+
+			}
+		});
+		btnSalvar.setBounds(208, 664, 100, 25);
 		panel.add(btnSalvar);
+
+		btnLiberar = new JButton("Liberar");
+		btnLiberar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnResponder.setEnabled(false);
+
+				btnSalvar.setEnabled(true);
+				btnCancelar.setEnabled(true);
+				btnLiberar.setEnabled(false);
+
+				txtEnunciado.setEditable(true);
+				txtrA.setEditable(true);
+				txtrB.setEditable(true);
+				txtrC.setEditable(true);
+				txtrD.setEditable(true);
+				txtrE.setEditable(true);
+			}
+		});
+		btnLiberar.setBounds(10, 665, 89, 23);
+		panel.add(btnLiberar);
+
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setEnabled(false);
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnResponder.setEnabled(true);
+				btnSalvar.setEnabled(false);
+				btnCancelar.setEnabled(false);
+				btnLiberar.setEnabled(true);
+				insereQuestao();
+			}
+		});
+		btnCancelar.setBounds(109, 665, 89, 23);
+		panel.add(btnCancelar);
 
 		JLabel lblAcertos = new JLabel("Acertos");
 		lblAcertos.setBounds(10, 35, 70, 14);
@@ -254,21 +343,21 @@ public class JTesteQuestoes extends JFrame {
 
 		List<?> li = banco.listarObjetosAsc(Questao.class, "numeroOcorrencia");
 
-		for (int i = 0; i < li.size(); i++) {
-			Questao q = (Questao) li.get(i);
-
-			if (q.getTitulo().equalsIgnoreCase(
-					"Prova do INSS 2012 - Tecnico Previdenciario")) {
-				q.setTitulo("DIREITO PREVIDENCIARIO");
-				System.out
-						.println("__________________________________________________________________________");
-				System.out.println(q.getEnunciado());
-				System.out
-						.println("__________________________________________________________________________");
-
-				// banco.salvarOuAtualizarObjeto(q);
-			}
-		}
+		// for (int i = 0; i < li.size(); i++) {
+		// Questao q = (Questao) li.get(i);
+		//
+		// if (q.getTitulo().equalsIgnoreCase(
+		// "")) {
+		// q.setTitulo("DIREITO PREVIDENCIARIO");
+		// System.out
+		// .println("__________________________________________________________________________");
+		// System.out.println(q.getEnunciado());
+		// System.out
+		// .println("__________________________________________________________________________");
+		//
+		// // banco.salvarOuAtualizarObjeto(q);
+		// }
+		// }
 
 		// System.out.println(lblAcertos.getText());
 
@@ -277,6 +366,12 @@ public class JTesteQuestoes extends JFrame {
 
 	private void insereQuestao() {
 		// TODO Auto-generated method stub
+		txtEnunciado.setEditable(false);
+		txtrA.setEditable(false);
+		txtrB.setEditable(false);
+		txtrC.setEditable(false);
+		txtrD.setEditable(false);
+		txtrE.setEditable(false);
 
 		List<?> li = banco.listarObjetosAsc(Questao.class, "numeroOcorrencia");
 
